@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>payingguest</groupId>
-	<artifactId>room-service</artifactId>
+	<artifactId>payingguest-room-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>room</name>
 	<description>Room Module in Paying Guest Application</description>

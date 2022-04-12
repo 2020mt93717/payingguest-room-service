@@ -70,7 +70,7 @@ public class Room {
     @Column(name = "LastUpdatedBy", nullable = false, length = 256)
     private String lastUpdatedBy;
 
-    @Column(name = "LastUpdatedDate", nullable = false, length = 256)
+    @Column(name = "LastUpdatedDate", nullable = false)
     private Date lastUpdatedDate;
 
 }
