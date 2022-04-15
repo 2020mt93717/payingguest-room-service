@@ -8,6 +8,7 @@ spring:
     url: jdbc:mysql://localhost:3306/roomdb
     username: roomuser
     password: roompassword
+    url: jdbc:mysql://localhost:3306/roomdb?createDatabaseIfNotExist=true
     ## Hibernate Properties
     # The SQL dialect makes Hibernate generate better SQL for the chosen database
   jpa:
