@@ -23,6 +23,7 @@
  * **************************************************************************************/
 package payingguest.room.domain;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -47,7 +48,7 @@ public class Room {
     @Id
     @GeneratedValue
     @Column(name = "RoomId", nullable = false, precision = 18, unique = true)
-    private long roomId;
+    private BigInteger roomId;
 
     @Column(name = "ApartmentName", nullable = false, length = 500)
     private String apartmentName;

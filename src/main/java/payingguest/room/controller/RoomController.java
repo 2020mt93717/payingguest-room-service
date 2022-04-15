@@ -24,38 +24,41 @@
 package payingguest.room.controller;
 
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import payingguest.room.domain.Room;
+import payingguest.room.dto.RoomRequest;
+import payingguest.room.service.RoomService;
 
 @RestController
 public class RoomController {
 
+    @Autowired
+    private RoomService roomService;
+
     @GetMapping("/room")
     public Collection<Room> loadAllRooms() {
-        Room myRoom = new Room();
-        myRoom.setRoomId(1);
-        myRoom.setRoomNumber("1A");
-        myRoom.setApartmentName("Sun Flower Apt");
-        myRoom.setMaximumOccupancy(3);
-        myRoom.setRoomRent(1500);
-        return List.of(myRoom);
+        return roomService.loadAllRooms();
     }
 
-    @GetMapping("/room/{RoomId}")
-    public Room findRoomById(final @PathVariable("RoomId") Long pRoomId) {
+    @PostMapping("/room")
+    public Room addRoom(@RequestBody RoomRequest room) {
+        return roomService.addRoom(room);
+    }
 
-        Room myRoom = new Room();
-        myRoom.setRoomId(2);
-        myRoom.setRoomNumber("9A");
-        myRoom.setApartmentName("Moon Surface Apt");
-        myRoom.setMaximumOccupancy(8);
-        myRoom.setRoomRent(200);
-        return myRoom;
+    @PutMapping("/room/{roomId}")
+    public Room updateRoom(final @PathVariable("roomId") BigInteger roomId, @RequestBody RoomRequest roomRequest) {
+        return roomService.updateRoom(roomId, roomRequest);
+    }
+
+    @GetMapping("/room/{roomId}")
+    public Room findRoomById(final @PathVariable("roomId") BigInteger roomId) {
+        return roomService.findRoomById(roomId);
+
     }
 }
