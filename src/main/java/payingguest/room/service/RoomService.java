@@ -67,13 +67,6 @@ public class RoomService {
         return  roomRepository.save(roomInDb);
     }
 
-//    public static Object objectMapper(Object object){
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-//        PersonalInfo personInfo = mapper.convertValue(object, PersonalInfo.class);
-//        return personInfo;
-//    }
-
     public static Room objectMapper(RoomRequest roomRequest){
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);

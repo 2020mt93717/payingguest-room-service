@@ -26,7 +26,6 @@ package payingguest.room.controller;
 
 import java.math.BigInteger;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
