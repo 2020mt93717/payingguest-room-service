@@ -1,6 +1,6 @@
 #Server Settings
 server:
-  port: 8082
+  port: 80
 
 spring:
   ## Datasource Properties
