@@ -1,6 +1,6 @@
 #Server Settings
 server:
-  port: 8082
+  port: 80
 
 spring:
   ## Datasource Properties
@@ -8,6 +8,7 @@ spring:
     url: jdbc:mysql://localhost:3306/roomdb
     username: roomuser
     password: roompassword
+    url: jdbc:mysql://localhost:3306/roomdb?createDatabaseIfNotExist=true
     ## Hibernate Properties
     # The SQL dialect makes Hibernate generate better SQL for the chosen database
   jpa:

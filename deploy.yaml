@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: res-deployment
+  labels:
+    app: res
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: res
+  template:
+    metadata:
+      labels:
+        app: res
+    spec:
+      containers:
+        - name: res
+          image:  payingguest-room-service:0.0.1-SNAPSHOT
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+

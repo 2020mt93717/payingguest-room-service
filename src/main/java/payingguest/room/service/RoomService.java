@@ -61,10 +61,11 @@ public class RoomService {
             if(StringUtils.hasText(roomRequest.getLastUpdatedBy())) {
                 roomInDb.setLastUpdatedBy(roomRequest.getLastUpdatedBy());
             }
+            roomInDb.setLastUpdatedDate(new Date());
+            return  roomRepository.save(roomInDb);
         }
+        return null;
 
-        roomInDb.setLastUpdatedDate(new Date());
-        return  roomRepository.save(roomInDb);
     }
 
     public static Room objectMapper(RoomRequest roomRequest){
