@@ -74,4 +74,7 @@ public class Room {
     @Column(name = "LastUpdatedDate", nullable = false)
     private Date lastUpdatedDate;
 
+    @Column(name = "guestId", nullable = false)
+    private Long guestId;
+
 }

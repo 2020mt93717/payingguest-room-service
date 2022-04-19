@@ -18,4 +18,6 @@ public class RoomRequest {
     private String createdBy;
 
     private String lastUpdatedBy;
+
+    private Long guestId;
 }

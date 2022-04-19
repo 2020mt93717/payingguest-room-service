@@ -30,7 +30,9 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.client.RestTemplate;
 import payingguest.room.domain.Room;
+import payingguest.room.dto.Guest;
 import payingguest.room.dto.RoomRequest;
 import payingguest.room.service.RoomService;
 
@@ -39,6 +41,9 @@ public class RoomController {
 
     @Autowired
     private RoomService roomService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @GetMapping("/room")
     public Collection<Room> loadAllRooms() {
@@ -53,6 +58,18 @@ public class RoomController {
     @PutMapping("/room/{roomId}")
     public Room updateRoom(final @PathVariable("roomId") BigInteger roomId, @RequestBody RoomRequest roomRequest) {
         return roomService.updateRoom(roomId, roomRequest);
+    }
+
+    @PostMapping("/room/{roomId}/guest/{guestId}")
+    public Room allotGuest(final @PathVariable("roomId") BigInteger roomId, final @PathVariable("guestId") Long guestId) {
+        // Validate if Guest Exist
+
+        String mGuestUrl = "http://guest-service/guest/id/" + guestId;
+        Guest myGuestResponse = restTemplate.getForObject(mGuestUrl, Guest.class);
+        if (myGuestResponse != null) {
+            return roomService.allotGuest(roomId, guestId);
+        }
+        return null;
     }
 
     @GetMapping("/room/{roomId}")

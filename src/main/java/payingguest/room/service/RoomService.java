@@ -74,4 +74,11 @@ public class RoomService {
         Room room = mapper.convertValue(roomRequest, Room.class);
         return room;
     }
+
+    public Room allotGuest(BigInteger roomId, Long guestId) {
+        Room roomInDb = findRoomById(roomId);
+        roomInDb.setGuestId(guestId);
+        roomInDb = roomRepository.save(roomInDb);
+        return roomInDb;
+    }
 }
