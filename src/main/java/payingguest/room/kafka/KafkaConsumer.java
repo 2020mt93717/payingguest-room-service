@@ -21,20 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * **************************************************************************************/
-package payingguest.room;
+package payingguest.room.kafka;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
-@EnableEurekaClient
-public class RoomApplication {
+import payingguest.room.service.RoomService;
 
-    public static void main(String[] args) {
-        SpringApplication.run(RoomApplication.class, args);
+@Component
+public class KafkaConsumer {
+
+    @Autowired
+    private RoomService mRoomService;
+
+    @KafkaListener(topics = "DELETE_GUEST_TOPIC", groupId = "payment-service")
+    public void consumeDeleteGuestMessage(String pMessage) {
+        long myGuestId = Long.valueOf(pMessage);
+        mRoomService.deleteAllotmentForGuest(myGuestId);
     }
-
 }

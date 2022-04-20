@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import payingguest.room.domain.Room;
+import payingguest.room.domain.RoomAllotment;
 import payingguest.room.dto.RoomRequest;
+import payingguest.room.repository.RoomAllotmentRepository;
 import payingguest.room.repository.RoomRepository;
 
 import java.math.BigInteger;
@@ -20,6 +22,9 @@ public class RoomService {
 
     @Autowired
     private RoomRepository roomRepository;
+
+    @Autowired
+    private RoomAllotmentRepository roomAllotmentRepository;
 
     public Collection<Room> loadAllRooms() {
         return roomRepository.findAll();
@@ -75,10 +80,19 @@ public class RoomService {
         return room;
     }
 
-    public Room allotGuest(BigInteger roomId, Long guestId) {
-        Room roomInDb = findRoomById(roomId);
-        roomInDb.setGuestId(guestId);
-        roomInDb = roomRepository.save(roomInDb);
-        return roomInDb;
+    public RoomAllotment allotGuest(BigInteger roomId, Long guestId) {
+        RoomAllotment myRoomAllotment = new RoomAllotment();
+        myRoomAllotment.setRoomId(roomId);
+        myRoomAllotment.setGuestId(guestId);
+        myRoomAllotment.setStartDate(new Date());
+        return roomAllotmentRepository.save(myRoomAllotment);
+    }
+
+    public void deleteAllotmentForGuest(long pGuestId) {
+        roomAllotmentRepository.deleteByGuestId(pGuestId);
+    }
+
+    public Iterable<RoomAllotment> loadAllAllotments() {
+        return roomAllotmentRepository.findAll();
     }
 }

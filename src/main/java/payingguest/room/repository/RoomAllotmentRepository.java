@@ -1,4 +1,4 @@
-/***************************************************************************************
+/**************************************************************************************
  * MIT License
  *
  * Copyright (c) 2022 2020mt93717
@@ -21,20 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * **************************************************************************************/
-package payingguest.room;
+package payingguest.room.repository;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@SpringBootApplication
-@EnableEurekaClient
-public class RoomApplication {
+import payingguest.room.domain.RoomAllotment;
 
-    public static void main(String[] args) {
-        SpringApplication.run(RoomApplication.class, args);
-    }
+@Repository
+public interface RoomAllotmentRepository extends JpaRepository<RoomAllotment, Long> {
 
+    void deleteByGuestId(Long guestId);
 }

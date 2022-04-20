@@ -43,35 +43,35 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class Room {
+public class RoomAllotment {
 
     @Id
     @GeneratedValue
-    @Column(name = "RoomId", nullable = false, precision = 18, unique = true)
+    @Column(name = "RoomAllotmentId", nullable = false, precision = 18, unique = true)
+    private Long roomAllotmentId;
+
+    @Column(name = "RoomId", nullable = false, precision = 18)
     private BigInteger roomId;
 
-    @Column(name = "ApartmentName", nullable = false, length = 500)
-    private String apartmentName;
+    @Column(name = "GuestId", nullable = false, precision = 18)
+    private Long guestId;
 
-    @Column(name = "RoomNumber", nullable = false, length = 50)
-    private String roomNumber;
+    @Column(name = "StartDate", nullable = false)
+    private Date startDate;
 
-    @Column(name = "MaximumOccupancy", nullable = false, precision = 18)
-    private long maximumOccupancy;
-
-    @Column(name = "RoomRent", nullable = false, precision = 6)
-    private long roomRent;
+    @Column(name = "EndDate", nullable = true)
+    private Date endDate;
     
-    @Column(name = "CreatedBy", nullable = false, length = 256)
+    @Column(name = "CreatedBy", nullable = true, length = 256)
     private String createdBy;
 
-    @Column(name = "CreationDate", nullable = false)
+    @Column(name = "CreationDate", nullable = true)
     private Date creationDate;
 
-    @Column(name = "LastUpdatedBy", nullable = false, length = 256)
+    @Column(name = "LastUpdatedBy", nullable = true, length = 256)
     private String lastUpdatedBy;
 
-    @Column(name = "LastUpdatedDate", nullable = false)
+    @Column(name = "LastUpdatedDate", nullable = true)
     private Date lastUpdatedDate;
 
 }
