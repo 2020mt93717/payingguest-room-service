@@ -1,6 +1,6 @@
 #Server Settings
 server:
-  port: 8080
+  port: 8082
 
 spring:
   ## Datasource Properties
@@ -29,6 +29,5 @@ eureka:
       preferIpAddress: true
 
 # Kafka Config
-kafka:
-  bootstrap:
-    server: 192.168.1.5:9092
+  kafka:
+    bootstrap-servers: 192.168.1.5:9092
