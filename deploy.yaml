@@ -5,7 +5,7 @@ metadata:
   labels:
     app: res
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       app: res
@@ -20,4 +20,12 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 80
+          resources:
+            # You must specify requests for CPU to autoscale
+            # based on CPU utilization
+            requests:
+              cpu: "250m"
+            limits:
+              cpu: "250m"
+
 
